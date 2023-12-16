@@ -1,0 +1,537 @@
+{
+    "endpoints": [
+        {
+            "path": "/api/v1/admin_login",
+            "method": "POST",
+            "description": "Admin login",
+            "requestParameters": [],
+            "request": {
+                "admin_email": "example@gmail.com",
+                "admin_password": "examplePassword"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "Admin logged in successfully",
+                "data": {
+                    "token": "your_jwt_token_here",
+                    "admin_id": 1
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/user_login",
+            "method": "POST",
+            "description": "user login",
+            "requestParameters": [],
+            "request": {
+                "user_email": "example@gmail.com",
+                "user_password": "examplePassword"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "Admin logged in successfully",
+                "data": {
+                    "token": "your_jwt_token_here",
+                    "user_id": 1
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/add_user",
+            "method": "POST",
+            "description": "adding a new user",
+            "requestParameters": [],
+            "request": {
+                "user_name": "example name",
+                "user_address":"exampleAddress",
+                "user_email": "example@gmail.com",
+                "user_password": "examplePassword"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "User added successful"
+            }
+        },
+
+        {
+            "path": "/api/v1/remove_user",
+            "method": "POST",
+            "description": "remove a user",
+            "requestParameters": [],
+            "request": {
+                "user_id":1
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "User removed successful"
+            }
+        },
+
+        {
+            "path": "/api/v1/add_admin",
+            "method": "POST",
+            "description": "adding a new admin",
+            "requestParameters": [],
+            "request": {
+                "admin_name": "example name",
+                "admin_email": "example@gmail.com",
+                "admin_password": "examplePassword"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "admin added successful"
+            }
+        },
+
+        {
+            "path": "/api/v1/remove_admin",
+            "method": "POST",
+            "description": "adding a new admin",
+            "requestParameters": [],
+            "request": {
+                "admin_id": 2
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "admin removed successful"
+            }
+        },
+
+        {
+            "path": "/api/v1/add_book",
+            "method": "POST",
+            "description": "adding a new book",
+            "requestParameters": [],
+            "request": {
+                "book_name": "example name",
+                "publisher":"example publisher",
+                "isbn": "example@gmail.com",
+                "category": "example category",
+                "sub_category": "example sub_category",
+                "description": "example description",
+                "pages": "240",
+                "image": "(file)",
+                "created_date":"20:12:2023",
+                "added_by": {
+                    "admin_id": 1
+                }
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "book added successful"
+            }
+        },
+
+        {
+            "path": "/api/v1/books",
+            "method": "GET",
+            "description": "get books",
+            "requestParameters": [],
+            "request": {},
+            "responseAfterProcessing": {
+                "book":{
+                    "name":"example name",
+                    "publisher":"example publisher",
+                    "isbn":"1234567890",
+                    "category":"Example Category",
+                    "sub_category":"Example Sub-Category",
+                    "description":"This is an example of a book.",
+                    "page_count":"240",
+                    "image":"(file)",
+                    "status": "available"
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/selected_book",
+            "method": "GET",
+            "description": "get a selected book",
+            "requestParameters": ["book_id"],
+            "request": {},
+            "responseAfterProcessing": {
+                "book":{
+                    "name":"example name",
+                    "publisher":"example publisher",
+                    "isbn":"1234567890",
+                    "category":"Example Category",
+                    "sub_category":"Example Sub-Category",
+                    "description":"This is an example of a book.",
+                    "page_count":"240",
+                    "image":"(file)",
+                    "status": "available"
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/loan_book",
+            "method": "POST",
+            "description": "request loan for a book",
+            "requestParameters": [],
+            "request": {
+                "user_id": 1,
+                "book_id": "2",
+                "loan_date":"20:12:2023",
+                "due_date": "30:12:2023",
+                "created_date": "20:12:2023"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "book loan requested"
+            }
+        },
+
+        {
+            "path": "/api/v1/extend_book_loan",
+            "method": "POST",
+            "description": "request for loan extension",
+            "requestParameters": [],
+            "request": {
+                "admin_id": 1,
+                "book_loan_id": "2",
+                "update_date":"20:12:2023",
+                "extension_date":"20:12:2023",
+                "due_date":"30:12:2023"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "user_address":"exampleAddress",
+                "message": "book loan accepted"
+            }
+        },
+
+        {
+            "path": "/api/v1/view_loan_request",
+            "method": "GET",
+            "description": "get book loans request",
+            "requestParameters": [],
+            "request": {},
+            "responseAfterProcessing": {
+                "book_loan":{
+                    "book_loan_id": "2",                    
+                    "book_name":"example name",
+                    "loan_date":"20:12:2023",
+                    "due_date": "30:12:2023",
+                    "image":"(file)",
+                    "status": "available",
+                    "user_loans": 3
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/view_loan_extension_request",
+            "method": "GET",
+            "description": "get book loans extension request",
+            "requestParameters": [],
+            "request": {},
+            "responseAfterProcessing": {
+                "book_loan":{
+                    "book_loan_id": "2",                    
+                    "book_name":"example name",
+                    "loan_date":"20:12:2023",
+                    "due_date": "30:12:2023",
+                    "extension_date":"20:12:2023",
+                    "extended": true,
+                    "image":"(file)",
+                    "status": "available",
+                    "user_loans": 3
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/approve_book_loan",
+            "method": "POST",
+            "description": "approving of book loan request",
+            "requestParameters": [],
+            "request": {
+                "admin_id": 1,
+                "book_loan_id": "2",
+                "update_date":"20:12:2023"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "user_address":"exampleAddress",
+                "message": "book loan accepted"
+            }
+        },
+
+        {
+            "path": "/api/v1/decline_book_loan",
+            "method": "POST",
+            "description": "decline of book loan request",
+            "requestParameters": [],
+            "request": {
+                "admin_id": 1,
+                "book_loan_id": "2",
+                "update_date":"20:12:2023"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "user_address":"exampleAddress",
+                "message": "book loan declined"
+            }
+        },
+
+        {
+            "path": "/api/v1/approve_book_loan_extension",
+            "method": "POST",
+            "description": "approving of book loan extension request",
+            "requestParameters": [],
+            "request": {
+                "admin_id": 1,
+                "book_loan_id": "2",
+                "update_date":"20:12:2023"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "user_address":"exampleAddress",
+                "message": "book loan extension accepted"
+            }
+        },
+
+        {
+            "path": "/api/v1/decline_book_loan_extension",
+            "method": "POST",
+            "description": "decline of book loan extension request",
+            "requestParameters": [],
+            "request": {
+                "admin_id": 1,
+                "book_loan_id": "2",
+                "update_date":"20:12:2023"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "user_address":"exampleAddress",
+                "message": "book loan extension declined"
+            }
+        },
+
+        {
+            "path": "/api/v1/return_book",
+            "method": "POST",
+            "description": "request to return a book",
+            "requestParameters": [],
+            "request": {
+                "admin_id": 1,
+                "book_loan_id": "2",
+                "update_date":"20:12:2023",
+                "return_date": "20:12:2023",
+                "penalty_amount":0
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "user_address":"exampleAddress",
+                "message": "book return request was successfully sent"
+            }
+        },
+
+        {
+            "path": "/api/v1/view_returns",
+            "method": "GET",
+            "description": "get an return request",
+            "requestParameters": ["admin_id"],
+            "request": {},
+            "responseAfterProcessing": {
+                // work on details needed to get returns targeted for an admin
+                "book":{
+                    "name":"example name",
+                    "publisher":"example publisher",
+                    "isbn":"1234567890",
+                    "category":"Example Category",
+                    "sub_category":"Example Sub-Category",
+                    "description":"This is an example of a book.",
+                    "page_count":"240",
+                    "image":"(file)",
+                    "status": "available"
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/receive_book",
+            "method": "POST",
+            "description": "confirm a return of a book",
+            "requestParameters": [],
+            "request": {
+                "admin_id": 1,
+                "book_loan_id": "2",
+                "update_date":"20:12:2023",
+                "due_date":"30:12:2023",
+                "return_date": "20:12:2023",
+                "penalty_amount":0,
+                "penalty_status": "cleared"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "user_address":"exampleAddress",
+                "message": "book return request was successfully approved"
+            }
+        },
+
+        {
+            "path": "/api/v1/add_to_cart",
+            "method": "POST",
+            "description": "add a book to the cart",
+            "requestParameters": [],
+            "request": {
+                "user_id": 1,
+                "book_id": "2",
+                "added_date":"20:12:2023"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "book added to cart successfully"
+            }
+        },
+
+        {
+            "path": "/api/v1/remove_from_cart",
+            "method": "POST",
+            "description": "remove a book from the cart",
+            "requestParameters": [],
+            "request": {
+                "user_id": 1,
+                "book_id": "2",
+                "remove_date":"20:12:2023"
+            },
+            "responseAfterProcessing": {
+                "status": "success",
+                "message": "book removed from cart successfully"
+            }
+        },
+
+        {
+            "path": "/api/v1/view_cart",
+            "method": "GET",
+            "description": "get book in a users cart",
+            "requestParameters": ["user_id"],
+            "request": {},
+            "responseAfterProcessing": {
+                "book":{
+                    "name":"example name",
+                    "publisher":"example publisher",
+                    "isbn":"1234567890",
+                    "category":"Example Category",
+                    "sub_category":"Example Sub-Category",
+                    "description":"This is an example of a book.",
+                    "page_count":"240",
+                    "image":"(file)",
+                    "status": "available"
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/view_library",
+            "method": "GET",
+            "description": "get book in a users library",
+            "requestParameters": ["user_id"],
+            "request": {},
+            "responseAfterProcessing": {
+                "book":{
+                    "name":"example name",
+                    "publisher":"example publisher",
+                    "isbn":"1234567890",
+                    "category":"Example Category",
+                    "sub_category":"Example Sub-Category",
+                    "description":"This is an example of a book.",
+                    "page_count":"240",
+                    "image":"(file)",
+                    "status": "available"
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/view_users",
+            "method": "GET",
+            "description": "get all users",
+            "requestParameters": [],
+            "request": {},
+            "responseAfterProcessing": {
+                "user":{
+                    "user_id":1,
+                    "user_name":"example name",
+                    "user_email":"example@gmail.com",
+                    "date_joined":"YYYY-MM-DD HH:MM:SS",
+                    "user_address":"exampleAddress"   
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/view_selected_user",
+            "method": "GET",
+            "description": "get a users",
+            "requestParameters": ["user_id"],
+            "request": {},
+            "responseAfterProcessing": {
+                "book":{
+                    "name":"example name",
+                    "publisher":"example publisher",
+                    "isbn":"1234567890",
+                    "category":"Example Category",
+                    "sub_category":"Example Sub-Category",
+                    "description":"This is an example of a book.",
+                    "page_count":"240",
+                    "image":"(file)",
+                    "status": "available"
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/view_admins",
+            "method": "GET",
+            "description": "get all admins",
+            "requestParameters": [],
+            "request": {},
+            "responseAfterProcessing": {
+                "admin":{
+                    "admin_id":1,
+                    "admin_name":"example name",
+                    "admin_email":"example@gmail.com",
+                    "date_joined":"YYYY-MM-DD HH:MM:SS"  
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/view_selected_admin",
+            "method": "GET",
+            "description": "get an admin",
+            "requestParameters": ["admin_id"],
+            "request": {},
+            "responseAfterProcessing": {
+                "book":{
+                    "name":"example name",
+                    "publisher":"example publisher",
+                    "isbn":"1234567890",
+                    "category":"Example Category",
+                    "sub_category":"Example Sub-Category",
+                    "description":"This is an example of a book.",
+                    "page_count":"240",
+                    "image":"(file)",
+                    "status": "available"
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/view_reports",
+            "method": "GET",
+            "description": "get the reports of the system",
+            "requestParameters": ["admin_id"],
+            "request": {},
+            "responseAfterProcessing": {
+                // to do all reports
+            }
+        }
+
+    ]
+}
