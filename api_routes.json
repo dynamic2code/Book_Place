@@ -337,7 +337,6 @@
             "requestParameters": ["admin_id"],
             "request": {},
             "responseAfterProcessing": {
-                // work on details needed to get returns targeted for an admin
                 "book":{
                     "name":"example name",
                     "publisher":"example publisher",
@@ -529,7 +528,43 @@
             "requestParameters": ["admin_id"],
             "request": {},
             "responseAfterProcessing": {
-                // to do all reports
+                "books_report":{
+
+                },
+                "users_report":{
+
+                },
+                "admin_report":{
+
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/view_notification",
+            "method": "GET",
+            "description": "get notification",
+            "requestParameters": ["admin_id"],
+            "request": {},
+            "responseAfterProcessing": {
+                "notification":{
+                    "id":1,
+                    "message":"new book loan review"
+                }
+            }
+        },
+
+        {
+            "path": "/api/v1/view_notification",
+            "method": "GET",
+            "description": "get notification",
+            "requestParameters": ["user_id"],
+            "request": {},
+            "responseAfterProcessing": {
+                "notification":{
+                    "id":1,
+                    "message":"new book loan review"
+                }
             }
         }
 
