@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("added_by")->constrained('admin');
+            $table->foreignId("added_by")->constrained('admins');
             $table->string("name");
             $table->string("publisher");
             $table->string("isbn");
@@ -24,9 +24,8 @@ return new class extends Migration
             $table->text("description");
             $table->integer("pages");
             $table->string("image");
-            $table->timestamps("created_at");
-            $table->timestamps("updated_at");
-            $table->timestamps("deleted_at");
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

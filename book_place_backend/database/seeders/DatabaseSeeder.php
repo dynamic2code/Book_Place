@@ -3,7 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Admin;
+use App\Models\Book;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Notifications\NotificationSender;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +25,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call([
+            AdminSeeder::class,
+            UserSeeder::class,
+            BookSeeder::class,
+            BookLoansSeeder::class,
+            // NotificationSender::class,
+            // AdminNotificationSeeder::class,
+            // LibrarySeeder::class,
+            // CartSeeder::class
+        ]);
     }
 }

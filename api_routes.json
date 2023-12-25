@@ -100,7 +100,7 @@
         },
 
         {
-            "path": "/api/v1/add_book",
+            "path": "/api/v1/books/add_book",
             "method": "POST",
             "description": "adding a new book",
             "requestParameters": [],

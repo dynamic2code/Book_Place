@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLibraryRequest;
-use App\Http\Requests\UpdateLibraryRequest;
-use App\Models\Library;
+namespace App\Http\Controllers\Api\v1;
 
-class LibraryController extends Controller
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
+use App\Models\Book;
+use App\Http\Controllers\Controller;
+
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,7 @@ class LibraryController extends Controller
      */
     public function index()
     {
-        //
+        return Book::all();
     }
 
     /**
@@ -31,10 +33,10 @@ class LibraryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreLibraryRequest  $request
+     * @param  \App\Http\Requests\StoreBookRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLibraryRequest $request)
+    public function store(StoreBookRequest $request)
     {
         //
     }
@@ -42,21 +44,21 @@ class LibraryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Library  $library
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Library $library)
+    public function show(Book $book)
     {
-        //
+        return $book;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Library  $library
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Library $library)
+    public function edit(Book $book)
     {
         //
     }
@@ -64,11 +66,11 @@ class LibraryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateLibraryRequest  $request
-     * @param  \App\Models\Library  $library
+     * @param  \App\Http\Requests\UpdateBookRequest  $request
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLibraryRequest $request, Library $library)
+    public function update(UpdateBookRequest $request, Book $book)
     {
         //
     }
@@ -76,10 +78,10 @@ class LibraryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Library  $library
+     * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Library $library)
+    public function destroy(Book $book)
     {
         //
     }

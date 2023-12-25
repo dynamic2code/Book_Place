@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('libraries', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained("user")->onDelete("cascade");
-            $table->foreignId("book_id")->constrained("book")->onDelete("cascade");
-            $table->timestamps("created_at");
-            $table->timestamps("updated_at");
-            $table->timestamps("deleted_at");
+            $table->foreignId("user_id")->constrained("users")->onDelete("cascade");
+            $table->foreignId("book_id")->constrained("books")->onDelete("cascade");
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('libraries');
+        Schema::dropIfExists('carts');
     }
 };

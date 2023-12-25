@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class NotificationSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,8 @@ class NotificationSeeder extends Seeder
      */
     public function run()
     {
-        Notification::factory()
-        ->count(3)
+        User::factory()
+        ->count(50)
         ->create();
     }
 }

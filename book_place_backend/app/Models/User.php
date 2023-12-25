@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'user_address',
         'password',
     ];
 
@@ -55,7 +56,7 @@ class User extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
-    public function book_loan(){
+    public function bookLoan(){
         return $this->hasMany(BookLoans::class);
     }
 }

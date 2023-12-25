@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreAdminRequest;
-use App\Http\Requests\UpdateAdminRequest;
-use App\Models\Admin;
+use App\Http\Requests\StoreNotificationRequest;
+use App\Http\Requests\UpdateNotificationRequest;
+use App\Models\Notification;
+use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return Notification::all();
     }
 
     /**
@@ -31,10 +32,10 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAdminRequest  $request
+     * @param  \App\Http\Requests\StoreNotificationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAdminRequest $request)
+    public function store(StoreNotificationRequest $request)
     {
         //
     }
@@ -42,21 +43,21 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(Notification $notification)
     {
-        //
+        return $notification;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(Notification $notification)
     {
         //
     }
@@ -64,11 +65,11 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAdminRequest  $request
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Http\Requests\UpdateNotificationRequest  $request
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAdminRequest $request, Admin $admin)
+    public function update(UpdateNotificationRequest $request, Notification $notification)
     {
         //
     }
@@ -76,10 +77,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy(Notification $notification)
     {
         //
     }

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Requests\StoreAdminNotificationRequest;
 use App\Http\Requests\UpdateAdminNotificationRequest;
 use App\Models\AdminNotification;
+use App\Http\Controllers\Controller;
 
 class AdminNotificationController extends Controller
 {
@@ -15,7 +16,7 @@ class AdminNotificationController extends Controller
      */
     public function index()
     {
-        //
+        return AdminNotification::all();
     }
 
     /**
@@ -47,7 +48,7 @@ class AdminNotificationController extends Controller
      */
     public function show(AdminNotification $adminNotification)
     {
-        //
+        return $adminNotification;
     }
 
     /**

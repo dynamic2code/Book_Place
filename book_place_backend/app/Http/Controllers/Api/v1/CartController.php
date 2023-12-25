@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreBookLoansRequest;
-use App\Http\Requests\UpdateBookLoansRequest;
-use App\Models\BookLoans;
+use App\Http\Requests\StoreCartRequest;
+use App\Http\Requests\UpdateCartRequest;
+use App\Models\Cart;
+use App\Http\Controllers\Controller;
 
-class BookLoansController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class BookLoansController extends Controller
      */
     public function index()
     {
-        //
+        return Cart::all();
     }
 
     /**
@@ -31,10 +32,10 @@ class BookLoansController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBookLoansRequest  $request
+     * @param  \App\Http\Requests\StoreCartRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBookLoansRequest $request)
+    public function store(StoreCartRequest $request)
     {
         //
     }
@@ -42,21 +43,21 @@ class BookLoansController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BookLoans  $bookLoans
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function show(BookLoans $bookLoans)
+    public function show(Cart $cart)
     {
-        //
+        return $cart;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BookLoans  $bookLoans
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(BookLoans $bookLoans)
+    public function edit(Cart $cart)
     {
         //
     }
@@ -64,11 +65,11 @@ class BookLoansController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBookLoansRequest  $request
-     * @param  \App\Models\BookLoans  $bookLoans
+     * @param  \App\Http\Requests\UpdateCartRequest  $request
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBookLoansRequest $request, BookLoans $bookLoans)
+    public function update(UpdateCartRequest $request, Cart $cart)
     {
         //
     }
@@ -76,10 +77,10 @@ class BookLoansController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BookLoans  $bookLoans
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookLoans $bookLoans)
+    public function destroy(Cart $cart)
     {
         //
     }

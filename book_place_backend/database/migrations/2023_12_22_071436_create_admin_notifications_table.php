@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('admin_notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("admin_id")->constrained('admin')->onDelete("cascade");
+            $table->foreignId("admin_id")->constrained('admins')->onDelete("cascade");
             $table->string("message");
             $table->string("heading");
-            $table->timestamps("created_at");
-            $table->timestamps("updated_at");
-            $table->timestamps("deleted_at");
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
