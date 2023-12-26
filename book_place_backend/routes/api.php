@@ -30,9 +30,10 @@ Route::group(['prefix'=>'v1', 'namespace'=>'App\Http\Controllers\Api\v1'], funct
     Route::post('admin/login', 'App\Http\Controllers\Api\v1\AuthController@admin_login')->name('auth.admin_login');
 });
 
-Route::group(['prefix'=>'v1', 'namespace'=>'App\Http\Controllers\Api\v1', 'middleware'=> 'auth:sanctum'], function(){
+Route::group(['prefix'=>'v1', 'namespace'=>'App\Http\Controllers\Api\v1','middleware'=> 'auth:sanctum'], function(){
 
     Route::apiResource('admin', AdminController::class);    
     Route::apiResource('users', UserController::class);
     Route::apiResource('books', BookController::class);
+    Route::apiResource('book-loans', BookController::class);
 });

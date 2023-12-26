@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBookLoansRequest;
 use App\Http\Requests\UpdateBookLoansRequest;
 use App\Models\BookLoans;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\v1\BookLoanResource;
 
 class BookLoansController extends Controller
 {
@@ -16,7 +17,7 @@ class BookLoansController extends Controller
      */
     public function index()
     {
-        return BookLoans::all();
+        return BookLoanResource::collection(BookLoans::all());
     }
 
     /**
@@ -48,7 +49,7 @@ class BookLoansController extends Controller
      */
     public function show(BookLoans $bookLoans)
     {
-        return $bookLoans;
+        return new BookLoanResource($bookLoans);
     }
 
     /**
