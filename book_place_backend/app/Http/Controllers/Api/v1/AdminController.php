@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Api\v1;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreAdminRequest;
-use App\Http\Requests\UpdateAdminRequest;
+use App\Http\Requests\v1\StoreAdminRequest;
+use App\Http\Requests\v1\UpdateAdminRequest;
 use App\Models\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\v1\AdminResource;
+use Illuminate\Http\Response;
 
 class AdminController extends Controller
 {
@@ -41,14 +42,7 @@ class AdminController extends Controller
      */
     public function store(StoreAdminRequest $request)
     {
-        try {
-            $admin = Admin::create($request->all());
-
-            return response()->json(['message' => 'Admin created successfully', 'data' => $admin], 201);
-        } catch (\Exception $e) {
-            Log::error('Failed to create admin. Error: ' . $e->getMessage());
-            return response()->json(['message' => 'Failed to create admin', 'error' => $e->getMessage()], 500);
-        }
+        return new AdminResource(Admin::create($request->all()));
     }
 
     /**
@@ -93,6 +87,15 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        //
+        try {
+            // Delete the book
+            $admin->delete();
+    
+            // Optionally, you can return a success response
+            return response()->json(['message' => 'admin deleted successfully'], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            // Handle any exceptions that might occur during deletion
+            return response()->json(['error' => 'Failed to delete the admin'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

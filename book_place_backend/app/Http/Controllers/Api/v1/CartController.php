@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreCartRequest;
-use App\Http\Requests\UpdateCartRequest;
+use App\Http\Requests\v1\StoreCartRequest;
+use App\Http\Requests\v1\UpdateCartRequest;
 use App\Models\Cart;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\v1\CartResource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
@@ -37,7 +40,7 @@ class CartController extends Controller
      */
     public function store(StoreCartRequest $request)
     {
-        //
+        return new CartResource(Cart::create($request->all()));
     }
 
     /**
@@ -48,7 +51,13 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        return $cart;
+        $user = Auth::user();
+
+        // Retrieve the cart for the user
+        $cart = $user->cart;
+
+        // You can customize the response as needed
+        return new CartResource($cart);
     }
 
     /**

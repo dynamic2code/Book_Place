@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreNotificationRequest extends FormRequest
+class StoreCartRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreNotificationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class StoreNotificationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id' => ['required'],
+            'book_id' => ['required'],
         ];
+    }
+    function prepareForValidation()
+    {
+        $this->merge([
+            'userId' => $this->user_id,
+            'bookId' => $this->book_id,
+        ]);
     }
 }

@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\v1\StoreUserRequest;
+use App\Http\Requests\v1\UpdateUserRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\UserResource;
-
-
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -42,7 +42,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        return new UserResource(User::create($request->all()));
     }
 
     /**
@@ -62,7 +62,7 @@ class UserController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $admin)
+    public function edit(User $user)
     {
         //
     }
@@ -71,10 +71,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateAdminRequest  $request
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $admin)
+    public function update(UpdateUserRequest $request, User $user)
     {
         //
     }
@@ -82,11 +82,20 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\User  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $admin)
+    public function destroy(User $user)
     {
-        //
+        try {
+            // Delete the book
+            $user->delete();
+    
+            // Optionally, you can return a success response
+            return response()->json(['message' => 'Book deleted successfully'], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            // Handle any exceptions that might occur during deletion
+            return response()->json(['error' => 'Failed to delete the book'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

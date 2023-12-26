@@ -3,11 +3,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreBookRequest;
-use App\Http\Requests\UpdateBookRequest;
+use App\Http\Requests\v1\StoreBookRequest;
+use App\Http\Requests\v1\UpdateBookRequest;
 use App\Models\Book;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\BookResource;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
 
 class BookController extends Controller
 {
@@ -39,32 +41,16 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        // Validate the request using the StoreBookRequest rules
+            // Validate the request and store the book
+        $book = Book::create($request->all());
 
-        // Create a new book instance
-        $book = new Book();
-
-        // Assign values from the request to the book instance
-        $book->added_by = auth()->user()->id; // Assuming you have authentication set up
-        $book->name = $request->input('name');
-        $book->publisher = $request->input('publisher');
-        $book->isbn = $request->input('isbn');
-        $book->category = $request->input('category');
-        $book->sub_category = $request->input('sub_category');
-        $book->description = $request->input('description');
-        $book->pages = $request->input('pages');
-
-        // Handle image upload (assuming you have an 'image' field in the request)
+        // Handle image upload
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('books', 'public');
-            $book->image = $imagePath;
+            $imagePath = $request->file('image')->store('public/images');
+            $book->update(['image' => Storage::url($imagePath)]);
         }
 
-        // Save the book to the database
-        $book->save();
-
-        // Optionally, you can return a response or redirect
-        return response()->json(['message' => 'Book created successfully', 'data' => $book], 201);
+        return new BookResource($book);
     }
 
     /**
@@ -109,6 +95,15 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        try {
+            // Delete the book
+            $book->delete();
+    
+            // Optionally, you can return a success response
+            return response()->json(['message' => 'Book deleted successfully'], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            // Handle any exceptions that might occur during deletion
+            return response()->json(['error' => 'Failed to delete the book'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

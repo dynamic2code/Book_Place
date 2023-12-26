@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,7 +27,15 @@ class StoreUserRequest extends FormRequest
             "name"=>['required'],
             "email" =>['required'],
             "password" =>['required'],
-            "user_address" => ['required']
+            "address" => ['required']
         ];
+    }
+
+    function prepareForValidation()
+    {
+        $this->merge([
+            'password' => bcrypt($this->password),
+            'user_address'=>  $this->address
+        ]);
     }
 }

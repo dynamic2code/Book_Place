@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreBookLoansRequest;
-use App\Http\Requests\UpdateBookLoansRequest;
+use App\Http\Requests\v1\StoreBookLoansRequest;
+use App\Http\Requests\v1\UpdateBookLoansRequest;
 use App\Models\BookLoans;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\BookLoanResource;
@@ -38,7 +38,7 @@ class BookLoansController extends Controller
      */
     public function store(StoreBookLoansRequest $request)
     {
-        //
+        return new BookLoanResource(BookLoans::create($request->all()));
     }
 
     /**

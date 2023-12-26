@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\StoreNotificationRequest;
-use App\Http\Requests\UpdateNotificationRequest;
+use App\Http\Requests\v1\StoreNotificationRequest;
+use App\Http\Requests\v1\UpdateNotificationRequest;
 use App\Models\Notification;
 use App\Http\Controllers\Controller;
 
