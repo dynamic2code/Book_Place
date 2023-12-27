@@ -7,6 +7,7 @@ use App\Http\Requests\v1\UpdateBookLoansRequest;
 use App\Models\BookLoans;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\BookLoanResource;
+use Illuminate\Http\Response;
 
 class BookLoansController extends Controller
 {
@@ -83,6 +84,15 @@ class BookLoansController extends Controller
      */
     public function destroy(BookLoans $bookLoans)
     {
-        //
+        try {
+            // Delete the book
+            $bookLoans->delete();
+    
+            // Optionally, you can return a success response
+            return response()->json(['message' => 'Book deleted successfully'], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            // Handle any exceptions that might occur during deletion
+            return response()->json(['error' => 'Failed to delete the book'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -39,7 +39,7 @@ Route::group(['prefix'=>'v1', 'namespace'=>'App\Http\Controllers\Api\v1','middle
     Route::apiResource('admin', AdminController::class);    
     Route::apiResource('users', UserController::class);
     Route::apiResource('books', BookController::class);
-    Route::apiResource('book-loans', BookController::class);
+    Route::apiResource('book-loans', BookLoansController::class);
     Route::apiResource('cart', CartController::class);
     Route::apiResource('notification', NotificationController::class);
     Route::apiResource('admin-notification', AdminNotificationController::class);

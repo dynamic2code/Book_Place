@@ -57,7 +57,7 @@ class Book extends Model
 
     public function bookLoan()
     {
-        return $this->belongsTo(BookLoans::class);
+        return $this->hasMany(BookLoans::class);
     }
 
     public function admin()

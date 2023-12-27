@@ -28,6 +28,7 @@ class BookLoans extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'password',
         'remember_token',
     ];
 
@@ -37,11 +38,12 @@ class BookLoans extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
     public function book()
     {
-        return $this->hasOne(Book::class);
+        return $this->belongsTo(Book::class);
     }
 
     public function admin()
